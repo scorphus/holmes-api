@@ -66,7 +66,8 @@ class BaseCLI(Shepherd):
             convert_unicode=True,
             pool_size=self.config.SQLALCHEMY_POOL_SIZE,
             max_overflow=self.config.SQLALCHEMY_POOL_MAX_OVERFLOW,
-            echo=self.options.verbose == 3
+            echo=self.options.verbose == 3,
+            pool_recycle=3600,  # Connections will bre recycled after one hour
         )
 
         self.info("Connecting to \"%s\" using SQLAlchemy" % connstr)
